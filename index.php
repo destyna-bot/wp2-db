@@ -1,23 +1,34 @@
-<h1>Form Tambah Data</h1>
+<?php
+include('koneksi.php');
 
-<form method="POST">
-    NIM : <input type="text" name="nim" required><br>
-    NAMA : <input type="text" name="nama"><br>
-    KELAS : <input type="text" name="kelas"><br>
-    <input type="submit" value="Simpan">
-</form>
+$sql = "select * from mahasiswa";
+$result = pg_query($sql);
+?>
+
+<h1>Aplikasi Mahasiswa</h1>
+
+<a href="tambah.php">Tambah</a><br>
+<table border="1">
+    <thead>
+        <tr>
+            <th>NIM</th>
+            <th>NAMA</th>
+            <th>KELAS</th>
+        </tr>
+    </thead>
+    <tbody>
+<?php
+  while($row = pg_fetch_object($result)):
+?>
+
+        <tr>
+            <td><?= $row->nim ?></td>
+            <td><?= $row->nama ?></td>
+            <td><?= $row->kelas ?></td>
+        </tr>
 
 <?php
-if(isset($_POST['nim']) and !empty($_POST['nim'])) {
-    include('koneksi.php');
-    $sql = "insert into mahasiswa(nim, nama, kelas) values('" .
-      $_POST['nim'] . "','" . $_POST['nama'] . "','" . $_POST['kelas'] . "')";
-    $result = pg_affected_rows(pg_query($sql));
-    if($result == 1) {
-        echo '<script type="text/javascript">';
-        echo 'alert("Data telah tersimpan");';
-        echo 'window.location.href = "index.php";';
-        echo '</script>';
-    }
-}
+  endwhile;
 ?>
+    </tbody>
+</table>

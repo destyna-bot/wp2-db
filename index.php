@@ -15,6 +15,7 @@ $result = pg_query($sql);
             <th>NAMA</th>
             <th>KELAS</th>
             <th>OPSI</th>
+            <th>OPSI</th>
         </tr>
     </thead>
     <tbody>

@@ -26,11 +26,11 @@ $result = pg_query($sql);
             <td><?= $row->nim ?></td>
             <td><?= $row->nama ?></td>
             <td><?= $row->kelas ?></td>
-            <td> <a href="#">Hapus</a></td>
-        </tr>
-<?php 
+            <td> <?php 
 echo '<a href="hapus.php?nim=">'. $row->nim . '">Hapus</a>'
-?>
+?></td>
+        </tr>
+
 <?php
   endwhile;
 ?>
